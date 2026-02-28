@@ -8,6 +8,7 @@ int main() {
     for (int i = 1; i <= n; i++) {
         cin >> parent[i];
     }
+    parent[1] = 1;
     const int LOG = 20;
     vector<vector<int>> table(LOG, vector<int>(n + 1));
     for (int i = 1; i <= n; i++) {
@@ -26,7 +27,6 @@ int main() {
         for (int i = 0; i < LOG; i++) {
             if (k & (1 << i)) {
                 a = table[i][a];
-                if (a == 0) break;
             }
         }
         cout << a << endl;
