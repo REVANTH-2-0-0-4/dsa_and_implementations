@@ -74,7 +74,7 @@ void dfs(int node){
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    cin >> n >> queries;
+    cin>>n;
     parent.resize(n+1);
     from.resize(n+1);
     cycleid.resize(n+1, -1);
@@ -110,27 +110,9 @@ int main(){
             dfs(i);
         }
     }
-    while(queries--) {
-        int a, b;
-        cin >> a >> b;
-        if(cycleid[a] != cycleid[b]) {
-            cout << -1 << endl;
-            continue;
-        }
-        if(depth[a] < depth[b]) {
-            cout << -1 << endl;
-            continue;
-        }
-        int diff = depth[a] - depth[b];
-        int ancestor = advance(a, diff);
-        if(depth[b] > 0) {
-            if(ancestor == b) cout << diff << endl;
-            else cout << -1 << endl;
-        } else {
-            int len = noofelementsincycle[cycleid[a]];
-            int dist = (stepstostartnodeincycle[ancestor] - stepstostartnodeincycle[b] + len) % len;
-            cout << diff + dist << endl;
-        }
+    for(int i = 1 ; i <= n ; i++){
+            cout<<depth[i]+noofelementsincycle[cycleid[i]]<<" ";
     }
+    cout<<endl;
     return 0;
 }
